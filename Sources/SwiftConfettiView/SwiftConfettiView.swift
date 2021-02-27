@@ -6,11 +6,10 @@
 //
 //
 
-import UIKit
 import QuartzCore
+import UIKit
 
 public class SwiftConfettiView: UIView {
-
     public enum ConfettiType {
         case confetti
         case triangle
@@ -23,24 +22,26 @@ public class SwiftConfettiView: UIView {
     public var colors: [UIColor]!
     public var intensity: Float!
     public var type: ConfettiType!
-    private var active :Bool!
+    private var active: Bool!
 
-    required public init?(coder aDecoder: NSCoder) {
+    public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setup()
     }
 
-    public override init(frame: CGRect) {
+    override public init(frame: CGRect) {
         super.init(frame: frame)
         setup()
     }
 
     func setup() {
-        colors = [UIColor(red:0.95, green:0.40, blue:0.27, alpha:1.0),
-            UIColor(red:1.00, green:0.78, blue:0.36, alpha:1.0),
-            UIColor(red:0.48, green:0.78, blue:0.64, alpha:1.0),
-            UIColor(red:0.30, green:0.76, blue:0.85, alpha:1.0),
-            UIColor(red:0.58, green:0.39, blue:0.55, alpha:1.0)]
+        colors = [
+            UIColor(red: 0.95, green: 0.40, blue: 0.27, alpha: 1.0),
+            UIColor(red: 1.00, green: 0.78, blue: 0.36, alpha: 1.0),
+            UIColor(red: 0.48, green: 0.78, blue: 0.64, alpha: 1.0),
+            UIColor(red: 0.30, green: 0.76, blue: 0.85, alpha: 1.0),
+            UIColor(red: 0.58, green: 0.39, blue: 0.55, alpha: 1.0),
+        ]
         intensity = 0.5
         type = .confetti
         active = false
@@ -69,7 +70,6 @@ public class SwiftConfettiView: UIView {
     }
 
     func imageForType(type: ConfettiType) -> UIImage? {
-
         var fileName: String!
 
         switch type {
@@ -85,18 +85,7 @@ public class SwiftConfettiView: UIView {
             return customImage
         }
 
-        let path = Bundle(for: SwiftConfettiView.self).path(forResource: "SwiftConfettiView", ofType: "bundle")
-        
-        let bundle = Bundle(path: path!)
-        let imagePath = bundle?.path(forResource: fileName, ofType: "png")
-        let url = URL(fileURLWithPath: imagePath!)
-        do {
-            let data = try Data(contentsOf: url)
-            return UIImage(data: data)
-        } catch {
-            print(error)
-        }
-        return nil
+        return UIImage(named: fileName, in: .current, compatibleWith: nil)
     }
 
     func confettiWithColor(color: UIColor) -> CAEmitterCell {
@@ -118,6 +107,24 @@ public class SwiftConfettiView: UIView {
     }
 
     public func isActive() -> Bool {
-    		return self.active
+        active
+    }
+}
+
+extension Bundle {
+    static let CocoaPodsBundleName = "SwiftConfettiView"
+
+    class var current: Bundle? {
+        #if SWIFT_PACKAGE
+        // Preprocessor definition documented here:
+        // https://github.com/apple/swift-package-manager/blob/main/Documentation/Usage.md#packaging-legacy-code
+        return Bundle.module
+        #else
+        let rootBundle = Bundle(for: SwiftConfettiView.self)
+        guard let bundlePath = rootBundle.path(forResource: Self.CocoaPodsBundleName, ofType: "bundle") else {
+            return rootBundle
+        }
+        return Bundle(path: bundlePath)
+        #endif
     }
 }

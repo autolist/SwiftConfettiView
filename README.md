@@ -24,6 +24,20 @@ iOS 9.3 or later and Swift 4
 
 ## Installation
 
+#### Swift Package Manager
+
+*Note: Instructions below are for using **SwiftPM** without the Xcode UI. It's the easiest to go to your Project Settings -> Swift Packages and add Swift Confetti View from there.*
+
+To integrate using Apple's Swift package manager, without Xcode integration, add the following as a dependency to your `Package.swift`:
+
+```
+.package(url: "https://github.com/theoriginalbit/SwiftConfettiView.git", .upToNextMajor(from: "0.1.1"))
+```
+
+and then specify `"Swift Confetti View"` as a dependency of the Target in which you wish to use Swift Confetti View.
+
+#### CocoaPods
+
 SwiftConfettiView is available through [CocoaPods](https://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
@@ -146,14 +160,14 @@ Returns `true` if it is being displayed, and `false` if it is not.
 
  * [Direct Message for Whatsapp](http://directmessage.xyz) - chat without adding a contact! <br>
  *Type number, press the direct message button and start whatsapp chat without saving new contact .Keep it fast,secret and clean.*
- 
- 
+
+
  * [Qwote](https://apps.apple.com/app/id1514390362) - Capture, Format & Share quotes <br>
  *Qwote is a quick way to share text snippets or quotes as beautifully formatted images.*
- 
+
  * [Soapbox](https://apps.apple.com/app/id1529283270) - Chat with and Make New Friends <br>
  *Soapbox is a different take Good conversations don’t need good lighting. *
- 
+
  </br>
 
 

@@ -28,15 +28,12 @@ Pod::Spec.new do |s|
   s.source           = { :git => 'https://github.com/ugurethemaydin/SwiftConfettiView.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
-  s.ios.deployment_target = '8.0'
+  s.ios.deployment_target = '9.0'
   s.requires_arc = true
   
-  s.source_files = 'SwiftConfettiView/Classes/**/*'
-
-  s.resource_bundles = {
-    'SwiftConfettiView' => ['SwiftConfettiView/Assets/*.png']
-  }
- s.resources = 'SwiftConfettiView/**/*.{png,json}'
+  s.source_files = 'Sources/SwiftConfettiView/*.swift'
+  s.resources = 'Sources/SwiftConfettiView/Resources/*.xcassets'
+  
   # s.public_header_files = 'Pod/Classes/**/*.h'
   s.frameworks = 'UIKit', 'QuartzCore'
   # s.dependency 'AFNetworking', '~> 2.3'
